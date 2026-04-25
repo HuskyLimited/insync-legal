@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insync Post — Privacy Policy</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+         max-width: 720px; margin: 60px auto; padding: 0 24px; line-height: 1.6; color: #111;
+         background: #fff; }
+  h1 { font-size: 32px; margin: 0 0 8px; }
+  .sub { color: #666; margin: 0 0 36px; font-size: 14px; }
+  h2 { font-size: 18px; margin: 32px 0 8px; }
+  p, li { font-size: 15px; }
+  ul { padding-left: 20px; }
+  code { background: #f3f3f3; padding: 1px 6px; border-radius: 3px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+<p class="sub">Insync Post · Last updated: April 2026</p>
+
+<p>Insync Post is a single-user desktop application for scheduling video posts to the operator's own TikTok creator account. This policy describes what data the application processes and how.</p>
+
+<h2>1. What data the application stores</h2>
+<ul>
+  <li><strong>OAuth tokens.</strong> When you authenticate your TikTok account, the access token and refresh token returned by TikTok's OAuth endpoint are stored as a JSON file on your local machine (<code>backend/.secrets.json</code>). They are not transmitted anywhere except directly to TikTok's official API endpoints.</li>
+  <li><strong>Video files.</strong> Video clips you import are stored in a local folder (<code>backend/storage/clips/</code>) on your machine. They are uploaded directly to TikTok via the Content Posting API at the scheduled time. They are not sent to any other server.</li>
+  <li><strong>Local metadata.</strong> Clip metadata (filename, duration, dimensions), schedule entries, and composer drafts are stored in a local SQLite database on your machine.</li>
+  <li><strong>Engagement data.</strong> If you authorize Display API access, the application reads your own past post statistics (likes, views, post times) directly from TikTok and stores aggregated time-of-day analytics locally.</li>
+</ul>
+
+<h2>2. What data the application does not collect</h2>
+<ul>
+  <li>The application has no servers, no analytics, no telemetry, and no third-party integrations besides TikTok itself.</li>
+  <li>No personal information beyond your TikTok username (visible in the app UI) is processed.</li>
+  <li>No information about other TikTok users is read or stored.</li>
+</ul>
+
+<h2>3. Sharing</h2>
+<p>The application does not share any data with any third party. Communication is exclusively between your machine and TikTok's official API endpoints.</p>
+
+<h2>4. Retention</h2>
+<p>All stored data lives on your local machine and remains until you delete it. There is no remote retention.</p>
+
+<h2>5. Disconnecting</h2>
+<p>You can disconnect your TikTok account at any time from within the application; this deletes the local OAuth tokens file. You can also revoke the application's access from your TikTok account settings.</p>
+
+<h2>6. Contact</h2>
+<p>For questions: itzpzhusky@gmail.com</p>
+
+</body>
+</html>
