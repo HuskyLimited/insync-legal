@@ -3,23 +3,140 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insync Post — Legal</title>
+<title>Insync Post — Personal TikTok scheduler</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-         max-width: 560px; margin: 80px auto; padding: 0 24px; color: #111; }
-  h1 { font-size: 28px; margin: 0 0 6px; }
-  .sub { color: #666; margin: 0 0 32px; font-size: 14px; }
-  ul { padding-left: 20px; }
-  li { margin: 8px 0; font-size: 16px; }
-  a { color: #FF2E80; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0A0907;
+    --ink: #F2EBDC;
+    --muted: #807868;
+    --pink: #FF2E80;
+    --rule: #2A2520;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;
+    font-feature-settings: "kern", "liga";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    background-image:
+      radial-gradient(ellipse at 30% 0%, rgba(255, 46, 128, 0.07) 0%, transparent 55%);
+    min-height: 100vh;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 80px 32px 60px; }
+  .pill {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pink);
+    border: 1px solid var(--pink);
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 50;
+    font-size: clamp(48px, 8vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    margin: 24px 0 18px;
+  }
+  h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "wght" 320;
+    color: var(--pink);
+  }
+  .lede {
+    font-size: 19px;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.55;
+    margin-bottom: 56px;
+  }
+  .lede b { color: var(--ink); font-weight: 500; }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 60, "wght" 460;
+    font-size: 22px;
+    margin: 48px 0 14px;
+    letter-spacing: -0.01em;
+  }
+  p { color: var(--muted); font-size: 16px; margin-bottom: 14px; max-width: 640px; }
+  p b { color: var(--ink); font-weight: 500; }
+  ul { color: var(--muted); padding-left: 24px; max-width: 640px; }
+  ul li { margin: 6px 0; font-size: 16px; }
+  ul li b { color: var(--ink); font-weight: 500; }
+  a { color: var(--pink); text-decoration: none; border-bottom: 1px solid rgba(255, 46, 128, 0.4); transition: border-color .15s; }
+  a:hover { border-bottom-color: var(--pink); }
+  .legal {
+    margin-top: 80px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .legal a { font-family: inherit; }
+  .legal .sep { opacity: 0.5; }
 </style>
 </head>
 <body>
-  <h1>Insync Post</h1>
-  <p class="sub">Legal documents</p>
-  <ul>
-    <li><a href="insync-privacy.html">Privacy Policy</a></li>
-    <li><a href="insync-terms.html">Terms of Service</a></li>
-  </ul>
+  <main class="wrap">
+
+    <span class="pill">v0.0.4 · personal use</span>
+
+    <h1>Insync <em>Post</em></h1>
+    <p class="lede">
+      A personal desktop scheduler for posting short-form video to a single
+      <b>TikTok creator account</b> at researched optimal times. Drop clips
+      into a queue, pick a window, fill in the engagement levers, let it
+      post on its own.
+    </p>
+
+    <h2>What it does</h2>
+    <ul>
+      <li><b>Imports your video clips</b> with auto-probe (duration, dimensions, codec) and thumbnail extraction.</li>
+      <li><b>Computes optimal posting windows</b> from your own historical engagement data using TikTok's Display API.</li>
+      <li><b>Composes posts</b> with caption, hashtags, pinned comment, cover frame, hook-frame inspector, length advisor, and chess-format quick-templates — every lever is research-backed.</li>
+      <li><b>Schedules to the calendar</b> via drag-and-drop. The local APScheduler fires at slot time and uploads via TikTok's Content Posting API.</li>
+    </ul>
+
+    <h2>How it uses TikTok's APIs</h2>
+    <p>
+      <b>Login Kit</b> for one-time OAuth so the operator can authenticate their
+      own TikTok account. <b>Display API</b> to read the operator's own past post
+      stats for time-of-day analytics. <b>Content Posting API</b> to upload the
+      operator's own pre-recorded clips at scheduled times.
+    </p>
+    <p>
+      The application stores OAuth tokens locally on the user's machine. It does
+      not share data with any third party and operates only on behalf of the
+      authenticated user against their own account.
+    </p>
+
+    <h2>Status</h2>
+    <p>
+      Local-only desktop application built with Tauri + Vue + FastAPI + SQLite.
+      Single user. Personal scheduling tool, not a multi-tenant platform.
+    </p>
+
+    <div class="legal">
+      <a href="insync-privacy.html">Privacy policy</a>
+      <span class="sep">·</span>
+      <a href="insync-terms.html">Terms of service</a>
+      <span class="sep">·</span>
+      <span>itzpzhusky@gmail.com</span>
+    </div>
+
+  </main>
 </body>
 </html>
